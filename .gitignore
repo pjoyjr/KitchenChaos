@@ -1,0 +1,76 @@
+# =========================================
+# UNITY PROJECT .gitignore
+# Track ONLY the Assets/ folder
+# =========================================
+
+# Ignore everything by default
+/*
+
+# Allow Assets folder
+!/Assets/
+!/Assets/**
+
+# --- Optional: Allow .gitignore itself and README ---
+!.gitignore
+!README.md
+
+# --- Unity / C# project-specific ignores ---
+# User-specific files
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+
+# Unity-generated folders
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Mm]emoryCaptures/
+UserSettings/
+.apt_generated/
+sysinfo.txt
+
+# Unity cache / store
+AssetStoreTools*
+Assets/AssetStoreTools*
+
+# TextMesh Pro auto files
+Assets/TextMesh Pro/Resources/*.asset
+
+# Crash and build reports
+*.stacktrace
+*.log
+
+# IDEs and tools
+.vscode/
+.idea/
+*.swp
+*.bak
+
+# Gradle / Android
+.gradle/
+*.gradle
+*.apk
+*.aab
+*.keystore
+*.jks
+
+# iOS
+DerivedData/
+*.xcworkspace/
+*.xcuserdata/
+
+# Other temp files
+*.DS_Store
+*.Thumbs.db
