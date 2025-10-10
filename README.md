@@ -1,2 +1,2 @@
 # KitchenChaos
-https://youtu.be/AmGSEH7QcDg
+Following the tutorial at: https://youtu.be/AmGSEH7QcDg
