@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Player : MonoBehaviour {
+public class Player : MonoBehaviour, IKitchenObjectParent {
 
     public static Player Instance { get; private set; }
 
@@ -17,10 +17,13 @@ public class Player : MonoBehaviour {
     [SerializeField] private float moveSpeed = 7f;
     [SerializeField] private GameInput gameInput;
     [SerializeField] private LayerMask countersLayerMask;
+    [SerializeField] private Transform kitchenObjectHoldPoint;
 
     private bool isWalking;
     private Vector3 lastInteractDir;
     private ClearCounter selectedCounter;
+    
+    private KitchenObject kitchenObject;
 
     private void Awake() { // Singleton pattern implementation, Awake is called before Start and is used for initialization
         if (Instance != null){
@@ -29,20 +32,18 @@ public class Player : MonoBehaviour {
         Instance = this;
     }
 
-    private void Start() // Start is called before the first frame update
-    {
+    private void Start() { // Start is called before the first frame update
         gameInput.OnInteractAction += GameInput_OnInteractAction;
 
     }
     
     private void GameInput_OnInteractAction(object sender, System.EventArgs e) {
         if (selectedCounter){
-            selectedCounter.Interact();
+            selectedCounter.Interact(this);
         }
     }
 
-    private void Update()
-    { // Update is called once per frame
+    private void Update() { // Update is called once per frame
         HandleMovement();
         HandleInteractions();
 
@@ -127,4 +128,23 @@ public class Player : MonoBehaviour {
         });
     }
 
+    public Transform GetKitchenObjectFollowTransform() {
+        return kitchenObjectHoldPoint;
+    }
+
+    public void SetKitchenObject(KitchenObject kitchenObject) {
+        this.kitchenObject = kitchenObject;
+    }
+
+    public KitchenObject GetKitchenObject() {
+        return kitchenObject;
+    }
+
+    public void ClearKitchenObject() {
+        kitchenObject = null;
+    }
+    
+    public bool HasKitchenObject() {
+        return kitchenObject != null;
+    }
 }
