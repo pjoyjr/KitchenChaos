@@ -33,12 +33,19 @@ public class Player : MonoBehaviour, IKitchenObjectParent {
 
     private void Start() { // Start is called before the first frame update
         gameInput.OnInteractAction += GameInput_OnInteractAction;
+        gameInput.OnInteractAlternateAction += GameInput_OnInteractAlternateAction;
 
     }
-    
+
     private void GameInput_OnInteractAction(object sender, System.EventArgs e) {
-        if (selectedCounter){
+        if (selectedCounter) {
             selectedCounter.Interact(this);
+        }
+    }
+    
+    private void GameInput_OnInteractAlternateAction(object sender, System.EventArgs e) {
+        if (selectedCounter) {
+            selectedCounter.InteractAlternate(this);
         }
     }
 
