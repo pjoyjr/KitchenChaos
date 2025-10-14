@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class Player : MonoBehaviour, IKitchenObjectParent {
 
@@ -47,9 +46,9 @@ public class Player : MonoBehaviour, IKitchenObjectParent {
         HandleMovement();
         HandleInteractions();
 
-        if (selectedCounter){
-            Debug.Log("Selected Counter: " + selectedCounter);
-        }
+        // if (selectedCounter){
+        //     Debug.Log("Selected Counter: " + selectedCounter);
+        // }
     }
 
     public bool IsWalking(){
@@ -95,7 +94,8 @@ public class Player : MonoBehaviour, IKitchenObjectParent {
 
             // Attempt only X movement
             Vector3 moveDirX = new Vector3(moveDir.x, 0f, 0f).normalized;
-            canMove = !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeight, playerRadius, moveDirX, moveDistance);
+            canMove = moveDir.x != 0 && !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeight, playerRadius, moveDirX, moveDistance);
+
             if (canMove) {
                 moveDir = moveDirX;
             } else {
