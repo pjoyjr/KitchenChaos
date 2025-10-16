@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Player : MonoBehaviour, IKitchenObjectParent {
 
     public static Player Instance { get; private set; }
@@ -37,13 +38,13 @@ public class Player : MonoBehaviour, IKitchenObjectParent {
 
     }
 
-    private void GameInput_OnInteractAction(object sender, System.EventArgs e) {
+    private void GameInput_OnInteractAction(object sender, EventArgs e) {
         if (selectedCounter) {
             selectedCounter.Interact(this);
         }
     }
     
-    private void GameInput_OnInteractAlternateAction(object sender, System.EventArgs e) {
+    private void GameInput_OnInteractAlternateAction(object sender, EventArgs e) {
         if (selectedCounter) {
             selectedCounter.InteractAlternate(this);
         }
