@@ -80,7 +80,7 @@ public class StoveCounter : BaseCounter, IHasProgress {
                         OnStateChanged?.Invoke(this, new OnStateChangedEventArgs {
                             state = state
                         });
-                        
+
                         OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs {
                             progressNormalized = 0f
                         });
@@ -109,7 +109,7 @@ public class StoveCounter : BaseCounter, IHasProgress {
                     OnStateChanged?.Invoke(this, new OnStateChangedEventArgs {
                         state = state
                     });
-                    
+
                     OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs {
                         progressNormalized = fryingTimer / fryingRecipeSO.fryingTimerMax
                     });
@@ -130,13 +130,13 @@ public class StoveCounter : BaseCounter, IHasProgress {
                     // Player is carrying a plate
                     if (plateKitchenObject.TryAddIngredient(GetKitchenObject().GetKitchenObjectSO())) {
                         GetKitchenObject().DestroySelf();
-                        
+
                         state = State.Idle;
 
                         OnStateChanged?.Invoke(this, new OnStateChangedEventArgs {
                             state = state
                         });
-                        
+
                         OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs {
                             progressNormalized = 0f
                         });
@@ -152,7 +152,7 @@ public class StoveCounter : BaseCounter, IHasProgress {
                 OnStateChanged?.Invoke(this, new OnStateChangedEventArgs {
                     state = state
                 });
-                
+
                 OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs {
                     progressNormalized = 0f
                 });
@@ -194,4 +194,8 @@ public class StoveCounter : BaseCounter, IHasProgress {
         return null;
     }
 
+
+    public bool IsFried() {
+        return state == State.Fried;
+    }
 }
