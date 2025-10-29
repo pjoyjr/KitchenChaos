@@ -1,8 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class SoundManager : MonoBehaviour {
+
+    public event EventHandler OnVolumeChanged;
 
     private const string PLAYER_PREFS_SOUND_EFFECTS_VOLUME = "SoundEffectsVolume";
 
@@ -60,7 +63,7 @@ public class SoundManager : MonoBehaviour {
     }
 
     private void PlaySound(AudioClip[] audioClipArray, Vector3 position, float volume = 1f) {
-        PlaySound(audioClipArray[Random.Range(0, audioClipArray.Length)], position, volume);
+        PlaySound(audioClipArray[UnityEngine.Random.Range(0, audioClipArray.Length)], position, volume);
     }
 
     private void PlaySound(AudioClip audioClip, Vector3 position, float volumeMultiplier = 1f) {
@@ -87,6 +90,8 @@ public class SoundManager : MonoBehaviour {
 
         PlayerPrefs.SetFloat(PLAYER_PREFS_SOUND_EFFECTS_VOLUME, volume);
         PlayerPrefs.Save();
+
+        OnVolumeChanged?.Invoke(this, EventArgs.Empty);
     }
 
     public float GetVolume() {
